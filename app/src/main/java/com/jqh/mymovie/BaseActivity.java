@@ -7,7 +7,7 @@ import android.view.View;
 
 public abstract  class BaseActivity extends AppCompatActivity {
 
-    private Toolbar mToolBar ;
+    protected Toolbar mToolBar ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,14 +22,14 @@ public abstract  class BaseActivity extends AppCompatActivity {
     protected abstract void initView();
     protected abstract void initData();
 
-    protected <T extends View> T binViewId(int resId)
+    protected <T extends View> T bindViewId(int resId)
     {
         return (T)findViewById(resId);
     }
 
     protected void setSupportActionBar()
     {
-        mToolBar = binViewId(R.id.toolbar);
+        mToolBar = bindViewId(R.id.toolbar);
         if(mToolBar != null)
         {
             setSupportActionBar(mToolBar);
