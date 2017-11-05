@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_200dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/dimen_100dp"
+            android:layout_height="@dimen/dimen_100dp"
+            android:src="@mipmap/ic_launcher"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="@dimen/dimen_2sp"
+            app:civ_border_overlay="true"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Version 1.0.0"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:textSize="@dimen/dimen_16sp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="介绍与应用"
+        android:textSize="@dimen/dimen_20sp"
+        android:textColor="@color/colorPrimary"/>
+
+
+</LinearLayout>

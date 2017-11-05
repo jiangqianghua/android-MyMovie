@@ -3,4 +3,8 @@
     <string name="title_activity_base">BaseActivity</string>
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
+
+    <string name="home_title">homepage</string>
+    <string name="about_title">aboutpage</string>
+    <string name="blog_title">blogpage</string>
 </resources>
