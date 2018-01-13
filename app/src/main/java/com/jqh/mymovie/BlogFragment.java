@@ -6,6 +6,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 
+import com.jqh.mymovie.base.BaseFragment;
+
 /**
  * Created by jiangqianghua on 17/9/23.
  */

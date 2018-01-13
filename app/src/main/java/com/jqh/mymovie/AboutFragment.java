@@ -1,5 +1,7 @@
 package com.jqh.mymovie;
 
+import com.jqh.mymovie.base.BaseFragment;
+
 /**
  * Created by jiangqianghua on 17/9/23.
  */

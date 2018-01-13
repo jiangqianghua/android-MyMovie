@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ablum_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_album_poster"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@drawable/ic_loading"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:id="@+id/tv_album_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="30dp"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:gravity="left"
+            android:text="111"/>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_album_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:paddingLeft="8dp"
+        android:textColor="@color/grey_medium"
+        android:textSize="24sp"
+        />
+</LinearLayout>

@@ -10,4 +10,6 @@
     <color name="progress_end_color">#a2e66d</color>
 
     <color name="white">#ffffff</color>
+
+    <color name="grey_medium">#999999</color>
 </resources>

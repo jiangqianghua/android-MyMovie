@@ -17,22 +17,51 @@ import android.widget.TextView;
 public class HomePicAdapter extends PagerAdapter {
 
     private Context mContext ;
+    private int[] mDec = new int[]{
+            R.string.a_name,
+            R.string.b_name,
+            R.string.c_name,
+            R.string.d_name,
+            R.string.e_name
+    };
+
+    private int[] mImg = new int[]{
+            R.drawable.a,
+            R.drawable.b,
+            R.drawable.c,
+            R.drawable.d,
+            R.drawable.e,
+    };
+
     public HomePicAdapter(Activity activity)
     {
         mContext = activity ;
     }
+
+    @Override
+    public boolean isViewFromObject(View view, Object object) {
+        return view == object;
+    }
+
+    @Override
+    public int getCount() {
+        return 5;
+    }
+
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.home_pic_item,null);
         TextView textView = (TextView)view.findViewById(R.id.tv_dec);
         ImageView imageView = (ImageView)view.findViewById(R.id.iv_img);
-
-        return super.instantiateItem(container, position);
+        textView.setText(mDec[position]);
+        imageView.setImageResource(mImg[position]);
+        container.addView(view);
+        return view;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        super.destroyItem(container, position, object);
+        container.removeView((View)object);
     }
 
 

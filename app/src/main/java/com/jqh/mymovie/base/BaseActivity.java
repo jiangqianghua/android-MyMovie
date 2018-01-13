@@ -1,9 +1,11 @@
-package com.jqh.mymovie;
+package com.jqh.mymovie.base;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+
+import com.jqh.mymovie.R;
 
 public abstract  class BaseActivity extends AppCompatActivity {
 
@@ -34,6 +36,15 @@ public abstract  class BaseActivity extends AppCompatActivity {
         {
             setSupportActionBar(mToolBar);
         }
+    }
+
+    /**
+     * 是否支持返回箭头
+     * @param isSupport
+     */
+    protected void setSupportArrowActionBar(boolean isSupport)
+    {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(isSupport);
     }
 
     protected void setActionBarIcon(int resId)

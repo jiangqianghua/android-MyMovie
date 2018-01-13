@@ -6,8 +6,8 @@
     android:orientation="vertical">
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_360dp"
-        android:layout_margin="@dimen/dimen_20dp">
+        android:layout_height="160dp"
+        android:layout_margin="5dp">
         <com.hejunlin.superindicatorlibray.LoopViewPager
             android:id="@+id/loopviewpager"
             android:layout_width="match_parent"
@@ -27,4 +27,14 @@
 
         </FrameLayout>
     </FrameLayout>
+
+    <GridView
+        android:id="@+id/gv_channel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="3"
+        android:verticalSpacing="6dp"
+        android:horizontalSpacing="6dp">
+
+    </GridView>
 </LinearLayout>

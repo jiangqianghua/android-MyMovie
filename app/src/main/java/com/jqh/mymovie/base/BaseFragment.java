@@ -1,4 +1,4 @@
-package com.jqh.mymovie;
+package com.jqh.mymovie.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

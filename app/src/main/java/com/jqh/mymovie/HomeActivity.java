@@ -7,12 +7,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+
+import com.jqh.mymovie.base.BaseActivity;
 
 public class HomeActivity extends BaseActivity {
     private DrawerLayout mDrawerLayout ;
@@ -42,6 +40,7 @@ public class HomeActivity extends BaseActivity {
 
         mPreItem = mNavigationView.getMenu().getItem(0);
         mPreItem.setCheckable(true);
+        mPreItem.setChecked(true);
         initFragment();
         handleNavigationViewItem();
     }
@@ -73,6 +72,7 @@ public class HomeActivity extends BaseActivity {
                 mPreItem = item ;
                 mDrawerLayout.closeDrawer(Gravity.LEFT);
                 item.setCheckable(true);
+                item.setChecked(true);
                 return false;
             }
         });

@@ -7,4 +7,30 @@
     <string name="home_title">homepage</string>
     <string name="about_title">aboutpage</string>
     <string name="blog_title">blogpage</string>
+
+    <string name="a_name">三生三世十里桃花</string>
+    <string name="b_name">那片星空那片海</string>
+    <string name="c_name">大秦帝国之崛起</string>
+    <string name="d_name">射雕英雄传</string>
+    <string name="e_name">中国式相亲之奶茶大叔遭疯抢</string>
+
+
+    <string name="channel_series">电视剧</string>
+    <string name="channel_movie">电影</string>
+    <string name="channel_comic">动漫</string>
+    <string name="channel_documentary">纪录片</string>
+    <string name="channel_music">音乐</string>
+    <string name="channel_variety">综艺</string>
+    <string name="channel_live">直播</string>
+    <string name="channel_favorite">收藏</string>
+    <string name="channel_history">历史</string>
+
+    <string name="site_letv">乐视</string>
+    <string name="site_sohu">搜狐</string>
+    
+    <string name="detail_failed_tip">数据加载失败，请检查网络</string>
+    <string name="load_more_text">正在加载新数据...</string>
+    <string name="data_failed_tip">数据加载失败</string>
+
+
 </resources>
