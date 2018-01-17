@@ -31,6 +31,7 @@
     <string name="detail_failed_tip">数据加载失败，请检查网络</string>
     <string name="load_more_text">正在加载新数据...</string>
     <string name="data_failed_tip">数据加载失败</string>
+    <string name="load_new_data">已经拿到最新数据</string>
 
 
 </resources>

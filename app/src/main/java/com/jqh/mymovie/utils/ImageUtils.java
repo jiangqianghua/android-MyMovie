@@ -28,7 +28,7 @@ public class ImageUtils {
                         .load(url)
                         .diskCacheStrategy(DiskCacheStrategy.ALL) //缓存
                         .error(R.drawable.ic_loading_hor)
-                        .centerCrop()  // 图片居中
+                        .fitCenter()  // 图片居中
                         .override(h,w)
                         .into(view)  //加到imageview
                 ;
@@ -62,6 +62,23 @@ public class ImageUtils {
         point.y = height ;
         return point ;
     }
+
+    /**
+     * 让图片获取到最佳比例
+     * @param context
+     * @param columns
+     * @return
+     */
+    public static Point getHorPostSize(Context context, int columns){
+        int width = getScreenWidthPixel(context)/columns;
+        width = width - (int)context.getResources().getDimension(R.dimen.dimen_6dp);
+        int height = Math.round((float)width/HOR_POSTER_RATO);
+        Point point = new Point();
+        point.x = width ;
+        point.y = height ;
+        return point ;
+    }
+
 
     public static int getScreenWidthPixel(Context context){
         WindowManager wm = (WindowManager)context.getSystemService(context.WINDOW_SERVICE);
