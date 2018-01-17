@@ -2,6 +2,8 @@ package com.jqh.mymovie;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Point;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jqh.mymovie.api.OnGetChannelAlbumListener;
@@ -25,6 +28,7 @@ import com.jqh.mymovie.model.Channel;
 import com.jqh.mymovie.model.ErrorInfo;
 import com.jqh.mymovie.model.Site;
 import com.jqh.mymovie.utils.ImageUtils;
+import com.jqh.mymovie.utils.StrUtils;
 import com.jqh.mymovie.widget.PullLoadRecyclerView;
 
 import java.util.List;
@@ -35,8 +39,8 @@ import java.util.List;
 public class DetailListFragment extends BaseFragment {
 
     private static final String TAG = DetailListFragment.class.getSimpleName();
-    private static int mSiteId;
-    private static int mchannelId ;
+    private  int mSiteId;
+    private  int mchannelId ;
     private static final String CHANNEL_ID = "channelid";
     private static final String SITE_ID = "siteid";
     private TextView mEmptyView ;
@@ -85,6 +89,11 @@ public class DetailListFragment extends BaseFragment {
             mColumns = 2 ;
             mDetailListAdapter.setColums(mColumns);
         }
+        else
+        {
+            mColumns = 3;
+            mDetailListAdapter.setColums(mColumns);
+        }
 
         loadMoreData();
     }
@@ -107,7 +116,7 @@ public class DetailListFragment extends BaseFragment {
     private void loadMoreData(){
         pageNo++;
         // 加载更多数据
-        SiteApi.onGetChannelAlbums(getActivity(), pageNo, pageSize, 1, mchannelId, new OnGetChannelAlbumListener() {
+        SiteApi.onGetChannelAlbums(getActivity(), pageNo, pageSize, mSiteId, mchannelId, new OnGetChannelAlbumListener() {
             @Override
             public void onOnGetChannelAlbumSuccess(AlbumList albumList) {
                 mHandler.post(new Runnable() {
@@ -199,13 +208,23 @@ public class DetailListFragment extends BaseFragment {
             Album album =  getItem(position);
             if(holder instanceof ItemViewHolder){
                 ItemViewHolder itemViewHolder = (ItemViewHolder)holder;
-                itemViewHolder.albumName.setText(album.getTitle());
+                itemViewHolder.albumName.setText(StrUtils.getStrByRange(album.getTitle(),4));
                 if(album.getTip().isEmpty())
                     itemViewHolder.albumTip.setVisibility(View.GONE);
                 else
                     itemViewHolder.albumTip.setText(album.getTip());
                 //itemViewHolder.albumPoster.setB
+                Point point = ImageUtils.getVerPostSize(mContext,columns);
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(point.x,point.y);
+                itemViewHolder.albumPoster.setLayoutParams(params);
                 ImageUtils.disPlayImage(itemViewHolder.albumPoster,album.getHorImageUrl(),itemViewHolder.albumPoster.getWidth(),itemViewHolder.albumPoster.getHeight());
+                if(album.getVerImageUrl() != null){
+                    ImageUtils.disPlayImage(itemViewHolder.albumPoster,album.getVerImageUrl(),point.x,point.y);
+                }
+                else
+                {
+                    //默认图片
+                }
             }
         }
 
