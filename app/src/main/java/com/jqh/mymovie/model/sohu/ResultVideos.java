@@ -3,21 +3,19 @@ package com.jqh.mymovie.model.sohu;
 import com.google.gson.annotations.Expose;
 
 /**
- * 封装搜狐的返回数据
- * Created by jiangqianghua on 18/1/13.
+ * Created by jiangqianghua on 18/1/21.
  */
 
-public class Result {
+public class ResultVideos {
 
     @Expose
     private long status ;
 
     @Expose
     private String statusText ;
-
-    // 列表
+    // 详情
     @Expose
-    private Data data ;
+    private VideosData data ;
 
     public long getStatus() {
         return status;
@@ -25,6 +23,14 @@ public class Result {
 
     public void setStatus(long status) {
         this.status = status;
+    }
+
+    public VideosData getData() {
+        return data;
+    }
+
+    public void setData(VideosData data) {
+        this.data = data;
     }
 
     public String getStatusText() {
@@ -35,12 +41,12 @@ public class Result {
         this.statusText = statusText;
     }
 
-    public Data getData() {
-        return data;
+    @Override
+    public String toString() {
+        return "ResultVideos{" +
+                "status=" + status +
+                ", statusText='" + statusText + '\'' +
+                ", data=" + data +
+                '}';
     }
-
-    public void setData(Data data) {
-        this.data = data;
-    }
-
 }

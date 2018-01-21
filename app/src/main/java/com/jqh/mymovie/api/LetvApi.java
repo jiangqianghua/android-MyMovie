@@ -6,6 +6,7 @@ import com.jqh.mymovie.model.AlbumList;
 import com.jqh.mymovie.model.Channel;
 import com.jqh.mymovie.model.ErrorInfo;
 import com.jqh.mymovie.model.Site;
+import com.jqh.mymovie.model.Video;
 import com.jqh.mymovie.model.sohu.Result;
 import com.jqh.mymovie.model.sohu.ResultAlbum;
 import com.jqh.mymovie.utils.OkHttpUtils;
@@ -193,7 +194,7 @@ public class LetvApi extends BaseSiteApi {
                 album.setSubTitle(resultAlbum.getAlbumName());
                 album.setTitle(resultAlbum.getAlbumName());
                 album.setTip(resultAlbum.getTip());
-                album.setVideoTota(resultAlbum.getTotalVideocount());
+                album.setVideoTota(resultAlbum.getTotalVideoCount());
                 albumList.add(album);
             }
             return albumList;
@@ -209,5 +210,17 @@ public class LetvApi extends BaseSiteApi {
         info.setUrl(url);
         info.setClassName(TAG);
         return info;
+    }
+
+    public void onGetAlbumsDetail(Album album , OnGetAlbumDetailListener listener){
+
+    }
+
+    public void onGetVideo(Album album , int pageNo,int pageSize, OnGetVideoListener listener){
+
+    }
+
+    public void onGetVideoUrl(Video video, OnGetVideoPlayUrlListener listener){
+
     }
 }

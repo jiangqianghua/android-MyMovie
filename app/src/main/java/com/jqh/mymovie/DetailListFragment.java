@@ -222,7 +222,7 @@ public class DetailListFragment extends BaseFragment {
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             if(albumList.size() == 0)
                 return ;
-            Album album =  getItem(position);
+            final Album album =  getItem(position);
             if(holder instanceof ItemViewHolder){
                 ItemViewHolder itemViewHolder = (ItemViewHolder)holder;
                 itemViewHolder.albumName.setText(StrUtils.getStrByRange(album.getTitle(),4));
@@ -251,6 +251,19 @@ public class DetailListFragment extends BaseFragment {
                 }else{
                     //默认图片
                 }
+
+                itemViewHolder.resultContainer.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(mchannelId == Channel.DOCUMENTRY || mchannelId == Channel.MOVIE
+                                ||mchannelId == Channel.VARIETY || mchannelId == Channel.MUSIC){
+                            AlbumDetailActivity.launch(getActivity(),album,0, true);
+                        }
+                        else{
+                            AlbumDetailActivity.launch(getActivity(),album);
+                        }
+                    }
+                });
             }
         }
 

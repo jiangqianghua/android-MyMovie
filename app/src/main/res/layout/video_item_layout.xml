@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:orientation="vertical"
+    android:background="@drawable/video_item_selected"
+    android:gravity="center"
+    android:id="@+id/ll_video_container"
+    >
+    <Button
+        android:id="@+id/btn_video_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="18sp"
+        android:background="@drawable/video_item_button_bg"/>
+
+</LinearLayout>

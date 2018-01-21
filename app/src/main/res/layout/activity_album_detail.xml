@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_album_detail2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/top_actionbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_boder"
+        android:padding="8dp"
+        android:weightSum="7">
+        <ImageView
+            android:id="@+id/iv_album_image"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_margin="8dp"
+            android:scaleType="centerCrop"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_ablum_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:lines="1"
+                android:ellipsize="end"
+                android:textSize="22sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_album_director"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:lines="1"
+                android:textSize="18sp"
+                android:ellipsize="end"
+                android:visibility="gone"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_album_mainactor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:lines="1"
+                android:textSize="18sp"
+                android:ellipsize="end"
+                android:visibility="gone"
+
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+    
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+        </FrameLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/grey_medium_light"
+            android:layout_gravity="bottom"/>
+
+        <RelativeLayout
+            android:id="@+id/album_desc_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp">
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/tv_album_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="50dp"/>
+                </ScrollView>
+            </RelativeLayout>
+        </RelativeLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        >
+
+        <include layout="@layout/detail_bottom_button"/>
+
+    </LinearLayout>
+</LinearLayout>

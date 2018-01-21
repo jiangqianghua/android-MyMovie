@@ -51,9 +51,14 @@ public class ResultAlbum {
     @Expose
     private String albumId;//专辑id
 
-    @SerializedName("total_video_count")
+
+    @SerializedName("latest_video_count")  //专辑更到到多少集
     @Expose
-    private int totalVideocount;
+    private int lastVideoCount ;
+
+    @SerializedName("total_video_count") //专辑总集数
+    @Expose
+    private int totalVideoCount;
 
     public String getTvDesc() {
         return tvDesc;
@@ -119,11 +124,20 @@ public class ResultAlbum {
         this.albumId = albumId;
     }
 
-    public int getTotalVideocount() {
-        return totalVideocount;
+
+    public int getLastVideoCount() {
+        return lastVideoCount;
     }
 
-    public void setTotalVideocount(int totalVideocount) {
-        this.totalVideocount = totalVideocount;
+    public void setLastVideoCount(int lastVideoCount) {
+        this.lastVideoCount = lastVideoCount;
+    }
+
+    public int getTotalVideoCount() {
+        return totalVideoCount;
+    }
+
+    public void setTotalVideoCount(int totalVideoCount) {
+        this.totalVideoCount = totalVideoCount;
     }
 }

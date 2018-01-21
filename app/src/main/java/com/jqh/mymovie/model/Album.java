@@ -31,7 +31,7 @@ public class Album implements Parcelable {
     private String letvStye ;// 乐视特殊字段
     private Context mContext ;
 
-    public static final Parcelable.Creator<Album> CREATE = new Parcelable.Creator<Album>(){
+    public static final Parcelable.Creator<Album> CREATOR = new Creator<Album>(){
         @Override
         public Album createFromParcel(Parcel source) {
             return new Album(source);
@@ -168,6 +168,7 @@ public class Album implements Parcelable {
         horImageUrl = in.readString();
         albumDesc = in.readString();
         tip = in.readString();
+        mContext = AppManager.getContext();
         site = new Site(in.readInt(),mContext);
         iscompleted = in.readByte() != 0;
         letvStye = in.readString();
@@ -222,4 +223,5 @@ public class Album implements Parcelable {
         Album album = AppManager.getGson().fromJson(json,Album.class);
         return album ;
     }
+
 }

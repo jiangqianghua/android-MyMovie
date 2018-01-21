@@ -27,11 +27,20 @@
 
     <string name="site_letv">乐视</string>
     <string name="site_sohu">搜狐</string>
-    
+
     <string name="detail_failed_tip">数据加载失败，请检查网络</string>
     <string name="load_more_text">正在加载新数据...</string>
+    <string name="no_data_text">暂时没有数据</string>
     <string name="data_failed_tip">数据加载失败</string>
     <string name="load_new_data">已经拿到最新数据</string>
+    <string name="title_activity_album_detail">AlbumDetailActivity</string>
 
+    <string name="director">导演:</string>
+    <string name="mainactor">主演:</string>
+    <string name="favor_selected">已收藏</string>
+    <string name="favor_norma">收藏</string>
 
+    <string name="btn_phone_high">高清</string>
+    <string name="btn_phone_normal">普清</string>
+    <string name="btn_phone_super">超清</string>
 </resources>

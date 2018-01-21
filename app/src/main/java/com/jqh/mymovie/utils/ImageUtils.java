@@ -2,6 +2,7 @@ package com.jqh.mymovie.utils;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.media.Image;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -18,6 +19,13 @@ public class ImageUtils {
 
     private static final float VER_POSTER_RATO = 0.73f ;
     private static final float HOR_POSTER_RATO = 1.5f ;
+
+
+    public static void disPlayImage(ImageView view , String url){
+        if(view != null && url != null){
+            Glide.with(view.getContext()).load(url).into(view);
+        }
+    }
 
     public static void disPlayImage(ImageView view,String url,int w , int h){
         if(view != null && url != null && w > 0 && h > 0)

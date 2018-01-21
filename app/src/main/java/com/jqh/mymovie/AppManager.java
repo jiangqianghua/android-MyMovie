@@ -58,6 +58,24 @@ public class AppManager extends Application {
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
     }
+
+    /**
+     * 获取wifi连接状态
+     * @return
+     */
+    public static boolean isNetWorkWifiAvailable(){
+        ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(connectivityManager.getNetworkInfo(1) != null){
+            NetworkInfo.State state = connectivityManager.getNetworkInfo(1).getState();
+            if(state == NetworkInfo.State.CONNECTED ||
+                    state == NetworkInfo.State.CONNECTING){
+                return true ;
+            }else{
+                return false ;
+            }
+        }
+        return false ;
+    }
 }
 
 

@@ -1,5 +1,6 @@
 package com.jqh.mymovie.api;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.jqh.mymovie.AppManager;
@@ -8,11 +9,19 @@ import com.jqh.mymovie.model.AlbumList;
 import com.jqh.mymovie.model.Channel;
 import com.jqh.mymovie.model.ErrorInfo;
 import com.jqh.mymovie.model.Site;
+import com.jqh.mymovie.model.Video;
+import com.jqh.mymovie.model.VideoList;
+import com.jqh.mymovie.model.sohu.DetailResult;
 import com.jqh.mymovie.model.sohu.Result;
 import com.jqh.mymovie.model.sohu.ResultAlbum;
+import com.jqh.mymovie.model.sohu.ResultVideos;
+import com.jqh.mymovie.model.sohu.VideoDetail;
 import com.jqh.mymovie.utils.OkHttpUtils;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.UUID;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -151,7 +160,7 @@ public class SohuApi extends BaseSiteApi {
                 album.setSubTitle(resultAlbum.getAlbumName());
                 album.setTitle(resultAlbum.getAlbumName());
                 album.setTip(resultAlbum.getTip());
-                album.setVideoTota(resultAlbum.getTotalVideocount());
+                album.setVideoTota(resultAlbum.getTotalVideoCount());
                 albumList.add(album);
             }
             return albumList;
@@ -167,6 +176,154 @@ public class SohuApi extends BaseSiteApi {
         info.setUrl(url);
         info.setClassName(TAG);
         return info;
+    }
+
+    public void onGetAlbumsDetail(final Album album , final OnGetAlbumDetailListener listener){
+        final String  url = API_ALBUM_INFO  + album.getAlbumId()+".json?"+API_KEY;
+        OkHttpUtils.excute(url, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                if(listener != null)
+                {
+                    ErrorInfo info = buildErrorInfo(url,"onGetAlbumsDetail",e,ErrorInfo.ERROR_TYPE_URL);
+                    listener.onOnGetAlbumDetailFailed(info);
+                }
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if(!response.isSuccessful())
+                {
+                    ErrorInfo info = buildErrorInfo(url,"onGetAlbumsDetail",null,ErrorInfo.ERROR_TYPE_HTTP);
+                    listener.onOnGetAlbumDetailFailed(info);
+                    return ;
+                }
+
+                DetailResult result =  AppManager.getGson().fromJson(response.body().string(),DetailResult.class);
+                if(result.getData() != null){
+                    if(result.getData().getLastVideoCount() > 0){
+                        album.setVideoTota(result.getData().getLastVideoCount());
+                    }
+                    else{
+                        album.setVideoTota(result.getData().getTotalVideoCount());
+                    }
+                }
+                if(listener != null){
+                    listener.onOnGetAlbumDetailSuccess(album);
+                }
+            }
+        });
+    }
+
+
+    public void onGetVideo(Album album , int pageNo,int pageSize, final OnGetVideoListener listener){
+
+        final String url = String.format(API_ALBUM_VIDOES_FORMAT,album.getAlbumId(),pageNo,pageSize);
+        OkHttpUtils.excute(url, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                if(listener != null)
+                {
+                    ErrorInfo info = buildErrorInfo(url,"onGetVideo",e,ErrorInfo.ERROR_TYPE_URL);
+                    listener.onGetVideoFailed(info);
+                }
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if(!response.isSuccessful())
+                {
+                    ErrorInfo info = buildErrorInfo(url,"onGetVideo",null,ErrorInfo.ERROR_TYPE_HTTP);
+                    listener.onGetVideoFailed(info);
+                    return ;
+                }
+                ResultVideos result = AppManager.getGson().fromJson(response.body().string(),ResultVideos.class);
+                VideoList videoList = new VideoList();
+                if(result != null && result.getData() != null){
+                    //Log.d(TAG ,"result video >> "+result.toString());
+                    for(VideoDetail video:result.getData().getVideoList()){
+                        Video v = new Video();
+                        v.setHorHigPic(video.getHorHigPic());
+                        v.setVerHighPic(video.getVerHighPic());
+                        v.setVid(video.getVid());
+                        v.setVideoName(video.getVideoName());
+                        v.setAid(video.getAid());
+                        videoList.add(v);
+                    }
+                }
+                if(listener != null){
+                    listener.onOnGetVideoSuccess(videoList);
+                }
+            }
+        });
+
+    }
+
+    /**
+     * 返回播放数据源
+     * @param video
+     * @param listener
+     */
+    public void onGetVideoUrl(final Video video, final OnGetVideoPlayUrlListener listener) {
+
+        final String url = String.format(API_VIDEO_PLAY_URL_FORMAT, video.getVid(), video.getAid());
+        OkHttpUtils.excute(url, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                if (listener != null) {
+                    ErrorInfo info = buildErrorInfo(url, "onGetVideoUrl", e, ErrorInfo.ERROR_TYPE_URL);
+                    listener.onGetFailed(info);
+                }
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (!response.isSuccessful()) {
+                    ErrorInfo info = buildErrorInfo(url, "onGetVideoUrl", null, ErrorInfo.ERROR_TYPE_HTTP);
+                    listener.onGetFailed(info);
+                    return;
+                }
+                try {
+                    JSONObject result = new JSONObject(response.body().string());
+                    JSONObject data = result.optJSONObject("data");
+                    String normaUrl = data.optString("url_nor");
+                    if (!TextUtils.isEmpty(normaUrl)) {
+                        normaUrl += "uid=" + getUUID() + "&pt=5&prod=app&pg=1";
+                        video.setNormalUrl(normaUrl);
+                        if(listener != null){
+                            listener.onGetNormal(video,normaUrl);
+                        }
+                    }
+
+                    String superUrl = data.optString("url_super");
+                    if (!TextUtils.isEmpty(superUrl)) {
+                        superUrl += "uid=" + getUUID() + "&pt=5&prod=app&pg=1";
+                        video.setSuperUrl(superUrl);
+                        if(listener != null){
+                            listener.onGetSuperUrl(video,superUrl);
+                        }
+                    }
+
+                    String highUrl = data.optString("url_high");
+                    if (!TextUtils.isEmpty(highUrl)) {
+                        highUrl += "uid=" + getUUID() + "&pt=5&prod=app&pg=1";
+                        video.setHighUrl(highUrl);
+                        if(listener != null){
+                            listener.onGetHighUrl(video,highUrl);
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+        });
+    }
+
+
+    private String getUUID() {
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString().replace("-", "");
     }
 
 }

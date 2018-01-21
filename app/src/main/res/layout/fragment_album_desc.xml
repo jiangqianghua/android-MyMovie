@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--singleChoice 单点 -->
+    <com.jqh.mymovie.widget.CustomGridView
+        android:id="@+id/gv_video_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="6"
+        android:choiceMode="singleChoice"
+        android:verticalSpacing="8dp"
+        android:horizontalSpacing="8dp"
+        android:stretchMode="columnWidth"
+        ></com.jqh.mymovie.widget.CustomGridView>
+
+    <TextView
+        android:id="@+id/tv_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/no_data_text"
+        android:textColor="@color/grey_medium"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:visibility="gone"/>
+</LinearLayout>

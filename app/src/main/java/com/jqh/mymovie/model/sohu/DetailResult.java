@@ -7,17 +7,16 @@ import com.google.gson.annotations.Expose;
  * Created by jiangqianghua on 18/1/13.
  */
 
-public class Result {
+public class DetailResult {
 
     @Expose
     private long status ;
 
     @Expose
     private String statusText ;
-
-    // 列表
+    // 详情
     @Expose
-    private Data data ;
+    private ResultAlbum data ;
 
     public long getStatus() {
         return status;
@@ -35,12 +34,11 @@ public class Result {
         this.statusText = statusText;
     }
 
-    public Data getData() {
+    public ResultAlbum getData() {
         return data;
     }
 
-    public void setData(Data data) {
+    public void setData(ResultAlbum data) {
         this.data = data;
     }
-
 }
